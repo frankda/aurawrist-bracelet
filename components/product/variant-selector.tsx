@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import { useProduct, useUpdateURL } from 'components/product/product-context';
 import { ProductOption, ProductVariant } from 'lib/shopify/types';
+import { useEffect } from 'react';
 
 type Combination = {
   id: string;
@@ -12,13 +13,28 @@ type Combination = {
 
 export function VariantSelector({
   options,
-  variants
+  variants,
+  onVariantChange
 }: {
   options: ProductOption[];
   variants: ProductVariant[];
+  onVariantChange: (variant: ProductVariant | undefined) => void;
 }) {
   const { state, updateOption } = useProduct();
   const updateURL = useUpdateURL();
+  
+  // Find the currently selected variant
+  const selectedVariant = variants.find((variant) =>
+    variant.selectedOptions.every(
+      (option) => state[option.name.toLowerCase()] === option.value
+    )
+  );
+
+  // Call onVariantChange whenever the selected variant changes
+  useEffect(() => {
+    onVariantChange(selectedVariant);
+  }, [selectedVariant, onVariantChange]);
+
   const hasNoOptionsOrJustOneOption =
     !options.length || (options.length === 1 && options[0]?.values.length === 1);
 
