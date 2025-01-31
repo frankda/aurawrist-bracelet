@@ -26,8 +26,8 @@ function CollectionItem({
           label={{
             position: 'bottom',
             title: item.title as string,
-            amount: item.priceRange.maxVariantPrice.amount,
-            currencyCode: item.priceRange.maxVariantPrice.currencyCode
+            amount: item.priceRange.minVariantPrice.amount,
+            currencyCode: item.priceRange.minVariantPrice.currencyCode
           }}
         />
       </Link>
@@ -45,6 +45,8 @@ export async function CollectionSection() {
   if (!products.length) return null;
 
   const [first, second, third, fourth] = products;
+
+  console.log(products)
 
   return (
     <section className="mx-auto max-w-screen-2xl px-4 py-12">
