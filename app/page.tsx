@@ -1,5 +1,6 @@
+import { Banner } from 'components/banner';
 import { Carousel } from 'components/carousel';
-import { ThreeItemGrid } from 'components/grid/three-items';
+import { CollectionSection } from 'components/collection-section';
 import Footer from 'components/layout/footer';
 
 export const metadata = {
@@ -12,7 +13,9 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      <ThreeItemGrid />
+      <Banner />
+      {/* <ThreeItemGrid /> */}
+      <CollectionSection />
       <Carousel />
       <Footer />
     </>
