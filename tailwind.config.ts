@@ -5,6 +5,9 @@ const config: Config = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      colors: {
+        primary: 'rgb(var(--color-primary))',
+      },
       fontFamily: {
         sans: ['var(--font-geist-sans)']
       },
